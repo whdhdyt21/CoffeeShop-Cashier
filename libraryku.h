@@ -69,7 +69,7 @@ struct DoubleLinkedList
             nomor_meja();
             waktu();
             cout << "====================================" << endl;
-            cout << "Nama Menu             Jumlah   Harga" << endl;
+            cout << "Menu" "\t" << "Qty" << "\t" << "Harga" << "\t" << "Total" << endl;
             cout << "------------------------------------" << endl;
             
             cout << "------------------------------------" << endl;
@@ -126,7 +126,7 @@ struct DoubleLinkedList
             string menu_makanan[10] = {"Nasi Goreng", "Nasi Goreng Seafood", "Nasi Goreng Kambing", "Nasi Goreng Ayam", "Nasi Goreng Sapi", "Nasi Goreng Ikan Asin", "Nasi Goreng Cumi", "Nasi Goreng Udang", "Nasi Goreng Bakso", "Nasi Goreng Telur"};
             int harga_makanan[10] = {15000, 20000, 25000, 20000, 25000, 25000, 25000, 25000, 25000, 25000};
             cout << "=========================" << endl;
-            cout << "        MENU MAKANAN     " << endl;
+            cout << "      MENU MAKANAN       " << endl;
             cout << "=========================" << endl;
             for (int i = 0; i < 10; i++)
             {
@@ -295,7 +295,7 @@ struct DoubleLinkedList
         {
             int pilihan;
             cout << "=========================" << endl;
-            cout << "         TAMBAH MENU     " << endl;
+            cout << "       TAMBAH MENU       " << endl;
             cout << "=========================" << endl;
             cout << "1. Tambah Menu Makanan" << endl;
             cout << "2. Tambah Menu Kopi" << endl;
