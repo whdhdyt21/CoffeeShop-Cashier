@@ -13,7 +13,7 @@ CoffeeShop cs;
         cout << "Masukkan jumlah menu : ";
         cin >> qty;
         cs.addMenu(nama, harga, qty);
-    }
+    } 
 
     void hapusOrder()
     {
