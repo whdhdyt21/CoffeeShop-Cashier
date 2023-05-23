@@ -68,7 +68,7 @@ CoffeeShop cs;
         cs.searchOrder(nama);
     }
 
-    //Mengurutkan pesanan berdasarkan harga dari yang termurah menggunakan insertion sort
+    //Mengurutkan pesanan berdasarkan total harga dari yang termurah menggunakan insertion sort
     void urutPesanan()
     {
         cs.sortOrder();
