@@ -39,6 +39,41 @@ CoffeeShop cs;
         cs.printReceipt(sub_total, PPN10, total, tunai, kembalian);
     }
 
+    void tampilDaftarMenu()
+    {
+        cs.displayMenu();
+    }
+    //edit pesanan berdasarkan nama yang di input, kemudian mengganti nama, harga, dan qty
+    void editPesanan()
+    {
+        string nama, namaBaru;
+        int harga, qty;
+        cout << "Masukkan nama menu yang akan diedit : ";
+        cin >> nama;
+        cout << "Masukkan nama menu baru : ";
+        cin >> namaBaru;
+        cout << "Masukkan harga menu baru : ";
+        cin >> harga;
+        cout << "Masukkan jumlah menu baru : ";
+        cin >> qty;
+        cs.editOrder(nama, namaBaru, harga, qty);
+    }
+
+    //Mencari pesanan berdasarkan nama
+    void cariPesanan()
+    {
+        string nama;
+        cout << "Masukkan nama menu : ";
+        cin >> nama;
+        cs.searchOrder(nama);
+    }
+
+    //Mengurutkan pesanan berdasarkan harga dari yang termurah menggunakan insertion sort
+    void urutPesanan()
+    {
+        cs.sortOrder();
+    }
+
 
     void menu()
     {
@@ -74,6 +109,18 @@ CoffeeShop cs;
                 break;
             case 5:
                 cout << "Terima kasih telah berkunjung di WDF Coffee Haven" << endl;
+                break;
+            case 6:
+                tampilDaftarMenu();
+                break;
+            case 7:
+                editPesanan();
+                break;
+            case 8:
+                cariPesanan();
+                break;
+            case 9:
+                urutPesanan();
                 break;
             default:
                 cout << "Pilihan tidak tersedia" << endl;

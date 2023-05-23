@@ -201,6 +201,71 @@ struct CoffeeShop
         cout << "-------------------------------------" << endl;
         cout << "=====================================" << endl;
     }
+
+    //edit pesanan berdasarkan nama yang di input, kemudian mengganti nama, harga, dan qty
+    void editOrder(string nama, string namaBaru, int hargaBaru, int qtyBaru)
+    {
+        WDF *curr = head;
+        while (curr != NULL)
+        {
+            if (curr->nama == nama)
+            {
+                curr->nama = namaBaru;
+                curr->harga = hargaBaru;
+                curr->qty = qtyBaru;
+                break;
+            }
+            curr = curr->next;
+        }
+    }
+    
+    //mencari order berdasarkan nama
+    void searchOrder(string nama)
+    {
+        WDF *curr = head;
+        while (curr != NULL)
+        {
+            if (curr->nama == nama)
+            {
+                cout << "------- Pesanan Ditemukan -------" << endl;
+                cout << "Nama Menu\t\t\t" << curr->nama << endl;
+                cout << "Harga\t\t\t\t" << curr->harga << endl;
+                cout << "Qty\t\t\t\t" << curr->qty << endl;
+                cout << "Total\t\t\t\t" << curr->harga * curr->qty << endl;
+                cout << "---------------------------------" << endl;
+                break;
+            }
+            curr = curr->next;
+        }
+    }
+
+    //Mengurutkan pesanan berdasarkan total dari yang termurah menggunakan insertion sort
+    void sortOrder()
+    {
+        WDF *curr = head;
+        WDF *temp = NULL;
+        while (curr != NULL)
+        {
+            temp = curr->next;
+            while (temp != NULL)
+            {
+                if (curr->harga * curr->qty > temp->harga * temp->qty)
+                {
+                    string nama = curr->nama;
+                    int harga = curr->harga;
+                    int qty = curr->qty;
+                    curr->nama = temp->nama;
+                    curr->harga = temp->harga;
+                    curr->qty = temp->qty;
+                    temp->nama = nama;
+                    temp->harga = harga;
+                    temp->qty = qty;
+                }
+                temp = temp->next;
+            }
+            curr = curr->next;
+        }
+    }
 };
 
 
