@@ -63,6 +63,7 @@ struct CoffeeShop
     // fungsi untuk mencetak struk
     void printReceipt(int sub_total, int& PPN10, int& total, int& tunai, int& kembalian)
     {
+        cout << endl << endl << endl;
         cout << "=====================================" << endl;
         cout << "           WDF Coffee Haven" << endl;
         cout << "           Gang Jeruk No. 5" << endl;
@@ -157,10 +158,8 @@ struct CoffeeShop
     //fungsi untuk melihat daftar menu
     void displayOrder()
     {
-        cout << "=====================================" << endl;
-        cout << "           WDF Coffee Haven" << endl;
-        
-        cout << "            Telp. 1500-212" << endl;
+        cout << endl << endl;
+        cout << "---------- Daftar Pesanan  ----------" << endl;
         cout << "=====================================" << endl;
         cout << "Menu" "\t\t" << "Qty" << "\t" << "Harga" << "\t" << "Total" << endl;
         cout<< "-------------------------------------" << endl;
@@ -171,35 +170,34 @@ struct CoffeeShop
             cout << curr->nama << "\t\t" << curr->qty << "\t" << curr->harga << "\t" << curr->qty * curr->harga << endl;
             curr = curr->next;
         }
-        cout << "-------------------------------------" << endl;
+        cout << "-------------------------------------" << endl << endl << endl;
     }
 
     void displayMenu()
     {
+        cout << endl << endl;
         cout << "=====================================" << endl;
         cout << "           WDF Coffee Haven" << endl;
         cout << "           Gang Jeruk No. 5" << endl;
         cout << "            Telp. 1500-212" << endl;
         cout << "=====================================" << endl;
-        cout << "Menu" "\t\t" << "Harga" << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "1. Espresso" << "\t\t" << "Rp. 20.000" << endl;
-        cout << "2. Cappucino" << "\t\t" << "Rp. 25.000" << endl;
-        cout << "3. Caffe Latte" << "\t\t" << "Rp. 25.000" << endl;
-        cout << "4. Caffe Mocha" << "\t\t" << "Rp. 30.000" << endl;
-        cout << "5. Caramel Macchiato" << "\t" << "Rp. 30.000" << endl;
-        cout << "6. Caffe Americano" << "\t" << "Rp. 20.000" << endl;
-        cout << "7. Caffe Flat White" << "\t" << "Rp. 25.000" << endl;
-        cout << "8. Caffe Vienna" << "\t\t" << "Rp. 25.000" << endl;
-        cout << "9. Caffe Mocha" << "\t\t" << "Rp. 30.000" << endl;
-        cout << "10. Caffe Vienna" << "\t\t" << "Rp. 25.000" << endl;
-        cout << "11. Caffe Mocha" << "\t\t" << "Rp. 30.000" << endl;
-        cout << "12. Caffe Vienna" << "\t\t" << "Rp. 25.000" << endl;
-        cout << "13. Caffe Mocha" << "\t\t" << "Rp. 30.000" << endl;
-        cout << "14. Caffe Vienna" << "\t\t" << "Rp. 25.000" << endl;
-        cout << "15. Caffe Mocha" << "\t\t" << "Rp. 30.000" << endl;
-        cout << "-------------------------------------" << endl;
+        cout << "Menu" "\t\t\t\t" << "Harga" << endl;
         cout << "=====================================" << endl;
+        cout << "~~~~~~~~~~~~~ Kopi :) ~~~~~~~~~~~~~~~" << endl;
+        cout << "1. Espresso" << "\t\t\t" << "15000" << endl;
+        cout << "2. Cappucino" << "\t\t\t" << "20000" << endl;
+        cout << "3. Latte" << "\t\t\t" << "20000" << endl;
+        cout << "4. Mocha" << "\t\t\t" << "25000" << endl;
+        cout << "5. Americano" << "\t\t\t" << "15000" << endl;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+        cout << "~~~~~~~~~~~~~ Snack :) ~~~~~~~~~~~~~~" << endl;
+        cout << "1. Donut" << "\t\t\t" << "10000" << endl;
+        cout << "2. Brownies" << "\t\t\t" << "15000" << endl;
+        cout << "3. Cookies" << "\t\t\t" << "10000" << endl;
+        cout << "4. Pie" << "\t\t\t\t" << "20000" << endl;
+        cout << "5. Cake" << "\t\t\t\t" << "25000" << endl;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+        cout << "=====================================" << endl << endl << endl;
     }
 
     //edit pesanan berdasarkan nama pesanan
@@ -219,26 +217,28 @@ struct CoffeeShop
         }
         cout << "Pesanan tidak ditemukan." << endl; // Menambahkan pesan jika pesanan tidak ditemukan
     }
-
-
     
     //mencari order berdasarkan nama
     void searchOrder(string nama)
     {
         WDF *curr = head;
         while (curr != NULL)
-        {
+        {//ketika menu tidak ditemukan terdapat pesan
             if (curr->nama == nama)
             {
-                cout << "------- Pesanan Ditemukan -------" << endl;
-                cout << "Nama Menu\t\t\t" << curr->nama << endl;
-                cout << "Harga\t\t\t\t" << curr->harga << endl;
-                cout << "Qty\t\t\t\t" << curr->qty << endl;
-                cout << "Total\t\t\t\t" << curr->harga * curr->qty << endl;
-                cout << "---------------------------------" << endl;
+                cout << "--------- Pesanan Ditemukan ---------" << endl;
+                cout << "Nama Pesanan" "\t\t\t" << curr->nama << endl;
+                cout << "Harga" "\t\t\t\t" << curr->harga << endl;
+                cout << "Qty" "\t\t\t\t" << curr->qty << endl;
+                cout << "Total" "\t\t\t\t" << curr->harga * curr->qty << endl;
+                cout << "-------------------------------------" << endl;
                 break;
             }
             curr = curr->next;
+        }
+        if (curr == NULL)
+        {
+            cout << "Pesanan tidak ditemukan." << endl;
         }
     }
 
@@ -274,6 +274,60 @@ struct CoffeeShop
             curr = curr->next;
         }
     }
+
+    //melihat pesanan termurah, termahal, terbanyak, tersedikit
+    void statistikOrder()
+    {
+        WDF *curr = head;
+        int min = curr->harga * curr->qty;
+        int max = curr->harga * curr->qty;
+        int total = 0;
+        int count = 0;
+        int minQty = curr->qty;
+        int maxQty = curr->qty;
+        string minNama = curr->nama;
+        string maxNama = curr->nama;
+        string minQtyNama = curr->nama;
+        string maxQtyNama = curr->nama;
+        while (curr != NULL)
+        {
+            total += curr->harga * curr->qty;
+            count += curr->qty;
+            if ((curr->harga * curr->qty) < min)
+            {
+                min = curr->harga * curr->qty;
+                minNama = curr->nama;
+            }
+            if ((curr->harga * curr->qty) > max)
+            {
+                max = curr->harga * curr->qty;
+                maxNama = curr->nama;
+            }
+            if (curr->qty < minQty)
+            {
+                minQty = curr->qty;
+                minQtyNama = curr->nama;
+            }
+            if (curr->qty > maxQty)
+            {
+                maxQty = curr->qty;
+                maxQtyNama = curr->nama;
+            }
+            curr = curr->next;
+        }
+        cout << "=====================================" << endl;
+        cout << "           WDF Coffee Haven" << endl;
+        cout << "           Gang Jeruk No. 5" << endl;
+        cout << "            Telp. 1500-212" << endl;
+        cout << "=====================================" << endl;
+        cout << "Total Penjualan" "\t\t\t" << total << endl;
+        cout << "Total Pesanan" "\t\t\t" << count << endl;
+        cout << "Pesanan Termurah" "\t" << minNama << " - " << min << endl;
+        cout << "Pesanan Termahal" "\t" << maxNama << " - " << max << endl;
+        cout << "Pesanan Terbanyak" "\t" << maxQtyNama << " - " << maxQty << endl;
+        cout << "Pesanan Tersedikit" "\t" << minQtyNama << " - " << minQty << endl;
+        cout << "=====================================" << endl << endl << endl;
+    }   
 };
 
 

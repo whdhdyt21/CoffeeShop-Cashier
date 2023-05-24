@@ -20,7 +20,7 @@ CoffeeShop cs;
     void hapusOrder()
     {
         string nama;
-        cout << "Masukkan nama menu : ";
+        cout << "Masukkan nama menu untuk dihapus: ";
         //menggunakan getline agar dapat menghapus pesanan yang memiliki spasi
         cin.ignore();
         getline(cin, nama);
@@ -53,13 +53,13 @@ CoffeeShop cs;
         string nama, namaBaru;
         int harga, qty;
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Menggunakan cin.ignore() untuk membersihkan buffer
-        cout << "Masukkan nama menu yang akan diedit: ";
+        cout << "Masukkan nama untuk diedit: ";
         getline(cin, nama);
-        cout << "Masukkan nama menu baru: ";
+        cout << "Masukkan nama baru: ";
         getline(cin, namaBaru);
-        cout << "Masukkan harga menu baru: ";
+        cout << "Masukkan harga baru: ";
         cin >> harga;
-        cout << "Masukkan jumlah menu baru: ";
+        cout << "Masukkan jumlah baru: ";
         cin >> qty;
         cs.editOrder(nama, namaBaru, harga, qty);
     }
@@ -81,6 +81,11 @@ CoffeeShop cs;
         cs.sortOrder();
     }
 
+    void statistikPesanan()
+    {
+        cs.statistikOrder();
+    }
+
 
     void menu()
     {
@@ -100,10 +105,12 @@ CoffeeShop cs;
             cout << "6. Cari Pesanan" << endl;
             cout << "7. Urutkan Pesanan" << endl;
             cout << "8. Cetak Struk" << endl;
-            cout << "9. Keluar Program" << endl;
+            cout << "9. Statistik Pesanan" << endl;
+            cout << "10. Keluar Program" << endl;
             cout << "=====================================" << endl;
             cout << "Masukkan pilihan : ";
             cin >> pilihan;
+            cout << "=====================================" << endl;
             switch (pilihan)
             {
             case 1:
@@ -139,13 +146,20 @@ CoffeeShop cs;
                 cetakStruk();
                 break;
             case 9:
-                cout << "Terima kasih telah menggunakan program ini" << endl;
+                cs.statistikOrder();
+                break;
+            case 10:
+                cout << "\n\n\n";
+                cout << "=====================================" << endl;
+                cout << "~ ♡(^ᴗ^)♡ Terima kasih kamu ♡(^ᴗ^)♡ ~" << endl;
+                cout << "=====================================" << endl;
+                cout << "\n\n\n";
                 break;
             default:
                 cout << "Pilihan tidak tersedia" << endl;
                 break;
             }
-        } while (pilihan != 9);
+        } while (pilihan != 10);
     }
 
 int main(int argc, char const *argv[])
