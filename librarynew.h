@@ -97,7 +97,7 @@ struct CoffeeShop
         cout << "=====================================" << endl;
         cout << " ~ Brewing Love, Serving Happiness ~ " << endl;
         cout << "        ( ＾◡＾)◞ ♥ ◟(＾◡＾✿)" << endl;
-        cout << "=====================================" << endl;
+        cout << "=====================================" << endl << endl << endl;
     }
 
     void addMenu(string nama, int harga, int qty)
@@ -202,10 +202,10 @@ struct CoffeeShop
         cout << "=====================================" << endl;
     }
 
-    //edit pesanan berdasarkan nama yang di input, kemudian mengganti nama, harga, dan qty
+    //edit pesanan berdasarkan nama pesanan
     void editOrder(string nama, string namaBaru, int hargaBaru, int qtyBaru)
     {
-        WDF *curr = head;
+        WDF* curr = head;
         while (curr != NULL)
         {
             if (curr->nama == nama)
@@ -213,11 +213,14 @@ struct CoffeeShop
                 curr->nama = namaBaru;
                 curr->harga = hargaBaru;
                 curr->qty = qtyBaru;
-                break;
+                return; // Menggunakan return untuk keluar dari fungsi setelah mengedit pesanan
             }
-            curr = curr->next;
+        curr = curr->next;
         }
+        cout << "Pesanan tidak ditemukan." << endl; // Menambahkan pesan jika pesanan tidak ditemukan
     }
+
+
     
     //mencari order berdasarkan nama
     void searchOrder(string nama)
@@ -243,25 +246,30 @@ struct CoffeeShop
     void sortOrder()
     {
         WDF *curr = head;
-        WDF *temp = NULL;
         while (curr != NULL)
         {
-            temp = curr->next;
-            while (temp != NULL)
+            string nama = curr->nama;
+            int harga = curr->harga;
+            int qty = curr->qty;
+            WDF *temp = curr->prev;
+            while (temp != NULL && (temp->harga * temp->qty) > (harga * qty))
             {
-                if (curr->harga * curr->qty > temp->harga * temp->qty)
-                {
-                    string nama = curr->nama;
-                    int harga = curr->harga;
-                    int qty = curr->qty;
-                    curr->nama = temp->nama;
-                    curr->harga = temp->harga;
-                    curr->qty = temp->qty;
-                    temp->nama = nama;
-                    temp->harga = harga;
-                    temp->qty = qty;
-                }
-                temp = temp->next;
+                temp->next->nama = temp->nama;
+                temp->next->harga = temp->harga;
+                temp->next->qty = temp->qty;
+                temp = temp->prev;
+            }
+            if (temp == NULL)
+            {
+                head->nama = nama;
+                head->harga = harga;
+                head->qty = qty;
+            }
+            else
+            {
+                temp->next->nama = nama;
+                temp->next->harga = harga;
+                temp->next->qty = qty;
             }
             curr = curr->next;
         }

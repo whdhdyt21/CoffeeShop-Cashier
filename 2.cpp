@@ -6,8 +6,10 @@ CoffeeShop cs;
     {
         string nama;
         int harga, qty;
+        //menggunakan getline agar dapat menambahkan pesanan yang memiliki spasi
         cout << "Masukkan nama menu : ";
-        cin >> nama;
+        cin.ignore();
+        getline(cin, nama); 
         cout << "Masukkan harga menu : ";
         cin >> harga;
         cout << "Masukkan jumlah menu : ";
@@ -19,7 +21,9 @@ CoffeeShop cs;
     {
         string nama;
         cout << "Masukkan nama menu : ";
-        cin >> nama;
+        //menggunakan getline agar dapat menghapus pesanan yang memiliki spasi
+        cin.ignore();
+        getline(cin, nama);
         cs.deleteOrder(nama);
     }
 
@@ -48,13 +52,14 @@ CoffeeShop cs;
     {
         string nama, namaBaru;
         int harga, qty;
-        cout << "Masukkan nama menu yang akan diedit : ";
-        cin >> nama;
-        cout << "Masukkan nama menu baru : ";
-        cin >> namaBaru;
-        cout << "Masukkan harga menu baru : ";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Menggunakan cin.ignore() untuk membersihkan buffer
+        cout << "Masukkan nama menu yang akan diedit: ";
+        getline(cin, nama);
+        cout << "Masukkan nama menu baru: ";
+        getline(cin, namaBaru);
+        cout << "Masukkan harga menu baru: ";
         cin >> harga;
-        cout << "Masukkan jumlah menu baru : ";
+        cout << "Masukkan jumlah menu baru: ";
         cin >> qty;
         cs.editOrder(nama, namaBaru, harga, qty);
     }
@@ -63,8 +68,10 @@ CoffeeShop cs;
     void cariPesanan()
     {
         string nama;
-        cout << "Masukkan nama menu : ";
-        cin >> nama;
+        cout << "Masukkan nama menu yang dicari : ";
+        //menggunakan getline agar dapat mencari pesanan yang memiliki spasi
+        cin.ignore();
+        getline(cin, nama);
         cs.searchOrder(nama);
     }
 
@@ -85,52 +92,61 @@ CoffeeShop cs;
             cout << "           Gang Jeruk No. 5" << endl;
             cout << "            Telp. 1500-212" << endl;
             cout << "=====================================" << endl;
-            cout << "1. Tambah Menu" << endl;
-            cout << "2. Hapus Order" << endl;
-            cout << "3. Tampilkan Order" << endl;
-            cout << "4. Cetak Struk" << endl;
-            cout << "5. Exit" << endl;
+            cout << "1. Tampilkan daftar menu" << endl;
+            cout << "2. Tambah pesanan" << endl;
+            cout << "3. Tampilkan Pesanan" << endl;
+            cout << "4. Edit Pesanan" << endl;
+            cout << "5. Hapus Pesanan" << endl;
+            cout << "6. Cari Pesanan" << endl;
+            cout << "7. Urutkan Pesanan" << endl;
+            cout << "8. Cetak Struk" << endl;
+            cout << "9. Keluar Program" << endl;
             cout << "=====================================" << endl;
             cout << "Masukkan pilihan : ";
             cin >> pilihan;
             switch (pilihan)
             {
             case 1:
-                tambahMenu();
+                tampilDaftarMenu();
                 break;
             case 2:
-                hapusOrder();
+                do
+                {
+                    tambahMenu();
+                    cout << "Tambah pesanan lagi? (1. Ya, 2. Tidak) : ";
+                    cin >> pilihan;
+                } while (pilihan == 1);
                 break;
             case 3:
                 tampilOrder();
                 break;
             case 4:
-                cetakStruk();
+                editPesanan();
+                cout << "Pesanan berhasil diedit" << endl;
                 break;
             case 5:
-                cout << "Terima kasih telah berkunjung di WDF Coffee Haven" << endl;
+                hapusOrder();
+                cout << "Pesanan berhasil dihapus" << endl;
                 break;
             case 6:
-                tampilDaftarMenu();
-                break;
-            case 7:
-                editPesanan();
-                break;
-            case 8:
                 cariPesanan();
                 break;
-            case 9:
+            case 7:
                 urutPesanan();
+                cout << "Pesanan berhasil diurutkan" << endl;
+                break;
+            case 8:
+                cetakStruk();
+                break;
+            case 9:
+                cout << "Terima kasih telah menggunakan program ini" << endl;
                 break;
             default:
                 cout << "Pilihan tidak tersedia" << endl;
                 break;
             }
-        } while (pilihan != 5);
+        } while (pilihan != 9);
     }
-
-
-
 
 int main(int argc, char const *argv[])
 {
