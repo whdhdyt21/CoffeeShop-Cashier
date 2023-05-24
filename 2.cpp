@@ -2,6 +2,14 @@
 #include "librarynew.h"
 
 CoffeeShop cs;
+
+    //menampilkan daftar menu
+    void tampilDaftarMenu()
+    {
+        cs.displayMenu();
+    }
+
+    //menambahkan pesanan dengan input nama, harga, dan qty
     void tambahMenu()
     {
         string nama;
@@ -17,37 +25,13 @@ CoffeeShop cs;
         cs.addMenu(nama, harga, qty);
     } 
 
-    void hapusOrder()
-    {
-        string nama;
-        cout << "Masukkan nama menu untuk dihapus: ";
-        //menggunakan getline agar dapat menghapus pesanan yang memiliki spasi
-        cin.ignore();
-        getline(cin, nama);
-        cs.deleteOrder(nama);
-    }
-
+    //menampilkan pesanan
     void tampilOrder()
     {
         cs.displayOrder();
     }
 
-    void cetakStruk()
-    {
-        int sub_total = 0;
-        int PPN10 = 0;
-        int total = 0;
-        int tunai = 0;
-        int kembalian = 0;
-
-        cs.printReceipt(sub_total, PPN10, total, tunai, kembalian);
-    }
-
-    void tampilDaftarMenu()
-    {
-        cs.displayMenu();
-    }
-    //edit pesanan berdasarkan nama yang di input, kemudian mengganti nama, harga, dan qty
+    //edit pesanan berdasarkan nama yang di input, kemudian mengganti nama, harga, dan qty baru
     void editPesanan()
     {
         string nama, namaBaru;
@@ -64,7 +48,18 @@ CoffeeShop cs;
         cs.editOrder(nama, namaBaru, harga, qty);
     }
 
-    //Mencari pesanan berdasarkan nama
+    //menghapus pesanan berdasarkan nama yang di input
+    void hapusOrder()
+    {
+        string nama;
+        cout << "Masukkan nama menu untuk dihapus: ";
+        //menggunakan getline agar dapat menghapus pesanan yang memiliki spasi
+        cin.ignore();
+        getline(cin, nama);
+        cs.deleteOrder(nama);
+    }
+
+    //mencari pesanan berdasarkan nama yang di input
     void cariPesanan()
     {
         string nama;
@@ -75,24 +70,37 @@ CoffeeShop cs;
         cs.searchOrder(nama);
     }
 
-    //Mengurutkan pesanan berdasarkan total harga dari yang termurah menggunakan insertion sort
+    //mengurutkan pesanan berdasarkan harga dari yang termurah
     void urutPesanan()
     {
         cs.sortOrder();
     }
 
+    //mencetak struk
+    void cetakStruk()
+    {
+        int sub_total = 0;
+        int PPN10 = 0;
+        int total = 0;
+        int tunai = 0;
+        int kembalian = 0;
+
+        cs.printReceipt(sub_total, PPN10, total, tunai, kembalian);
+    }
+
+    //menampilkan statistik pesanan
     void statistikPesanan()
     {
         cs.statistikOrder();
     }
 
-
+    //menampilkan menu
     void menu()
     {
         int pilihan, sub_total, PPN10, total, tunai, kembalian;
         do
         {
-            cout << "=====================================" << endl;
+            cout << "\n=====================================" << endl;
             cout << "           WDF Coffee Haven" << endl;
             cout << "           Gang Jeruk No. 5" << endl;
             cout << "            Telp. 1500-212" << endl;
@@ -110,7 +118,7 @@ CoffeeShop cs;
             cout << "=====================================" << endl;
             cout << "Masukkan pilihan : ";
             cin >> pilihan;
-            cout << "=====================================" << endl;
+            cout << "=====================================" << endl << endl;
             switch (pilihan)
             {
             case 1:

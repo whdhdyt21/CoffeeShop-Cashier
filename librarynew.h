@@ -28,7 +28,187 @@ struct CoffeeShop
             tail = NULL;
         }
 
-    // fungsi untuk kode struk random angka dan huruf
+    // fungsi untuk menampilkan menu di CoffeeShop
+    void displayMenu()
+    {
+        cout << endl << endl;
+        cout << "=====================================" << endl;
+        cout << "           WDF Coffee Haven" << endl;
+        cout << "           Gang Jeruk No. 5" << endl;
+        cout << "            Telp. 1500-212" << endl;
+        cout << "=====================================" << endl;
+        cout << "Menu" "\t\t\t\t" << "Harga" << endl;
+        cout << "=====================================" << endl;
+        cout << "~~~~~~~~~~~~~ Kopi :) ~~~~~~~~~~~~~~~" << endl;
+        cout << "1. Espresso" << "\t\t\t" << "15000" << endl;
+        cout << "2. Cappucino" << "\t\t\t" << "20000" << endl;
+        cout << "3. Latte" << "\t\t\t" << "20000" << endl;
+        cout << "4. Mocha" << "\t\t\t" << "25000" << endl;
+        cout << "5. Americano" << "\t\t\t" << "15000" << endl;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+        cout << "~~~~~~~~~~~~~ Snack :) ~~~~~~~~~~~~~~" << endl;
+        cout << "1. Donut" << "\t\t\t" << "10000" << endl;
+        cout << "2. Brownies" << "\t\t\t" << "15000" << endl;
+        cout << "3. Cookies" << "\t\t\t" << "10000" << endl;
+        cout << "4. Pie" << "\t\t\t\t" << "20000" << endl;
+        cout << "5. Cake" << "\t\t\t\t" << "25000" << endl;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+        cout << "=====================================" << endl << endl << endl;
+    }
+
+    // fungsi untuk menambahkan menu
+    void addMenu(string nama, int harga, int qty)
+    {
+        WDF *baru = new WDF;
+        baru->nama = nama;
+        baru->harga = harga;
+        baru->qty = qty;
+        baru->next = NULL;
+        baru->prev = NULL;
+        if (head == NULL)
+        {
+            head = baru;
+            tail = baru;
+        }
+        else
+        {
+            tail->next = baru;
+            baru->prev = tail;
+            tail = baru;
+        }
+    }
+
+    //fungsi untuk melihat daftar pesanan yang telah dipesan
+    void displayOrder()
+    {
+        cout << endl << endl;
+        cout << "---------- Daftar Pesanan  ----------" << endl;
+        cout << "=====================================" << endl;
+        cout << "Menu" "\t\t" << "Qty" << "\t" << "Harga" << "\t" << "Total" << endl;
+        cout<< "-------------------------------------" << endl;
+        //tampilkan menu yang dipesan
+        WDF *curr = head;
+        while (curr != NULL)
+        {
+            cout << curr->nama << "\t\t" << curr->qty << "\t" << curr->harga << "\t" << curr->qty * curr->harga << endl;
+            curr = curr->next;
+        }
+        cout << "-------------------------------------" << endl << endl << endl;
+    }
+
+    //fungsi untuk mengedit pesanan berdasarkan nama
+    void editOrder(string nama, string namaBaru, int hargaBaru, int qtyBaru)
+    {
+        WDF* curr = head;
+        while (curr != NULL)
+        {
+            if (curr->nama == nama)
+            {
+                curr->nama = namaBaru;
+                curr->harga = hargaBaru;
+                curr->qty = qtyBaru;
+                return; // Menggunakan return untuk keluar dari fungsi setelah mengedit pesanan
+            }
+        curr = curr->next;
+        }
+        cout << "Pesanan tidak ditemukan." << endl; // Menambahkan pesan jika pesanan tidak ditemukan
+    }
+
+    // fungsi untuk menghapus menu
+    void deleteOrder(string nama)
+    {
+        WDF *curr = head;
+        while (curr != NULL)
+        {
+            if (curr->nama == nama)
+            {
+                if (curr == head)
+                {
+                    head = curr->next;
+                    head->prev = NULL;
+                    delete curr;
+                    break;
+                }
+                else if (curr == tail)
+                {
+                    tail = curr->prev;
+                    tail->next = NULL;
+                    delete curr;
+                    break;
+                }
+                else
+                {
+                    curr->prev->next = curr->next;
+                    curr->next->prev = curr->prev;
+                    delete curr;
+                    break;
+                }
+            }
+            curr = curr->next;
+        }
+    }
+
+    //fungsi untuk mencari pesanan berdasarkan nama
+    void searchOrder(string nama)
+    {
+        WDF *curr = head;
+        while (curr != NULL)
+        {
+            if (curr->nama == nama)
+            {
+                cout << endl << endl;
+                cout << "--------- Pesanan Ditemukan ---------" << endl;
+                cout << "Nama Pesanan" "\t\t\t" << curr->nama << endl;
+                cout << "Harga" "\t\t\t\t" << curr->harga << endl;
+                cout << "Qty" "\t\t\t\t" << curr->qty << endl;
+                cout << "Total" "\t\t\t\t" << curr->harga * curr->qty << endl;
+                cout << "-------------------------------------" << endl << endl << endl;
+                break;
+            }
+            curr = curr->next;
+        }
+        if (curr == NULL)
+        {
+            cout << "Pesanan tidak ditemukan." << endl;
+        }
+    }
+
+    //fungsi untuk mengurutkan pesanan berdasarkan harga total termurah menggunakan insertion sort
+    void sortOrder()
+    {
+        WDF *curr = head;
+        while (curr != NULL)
+        {
+            string nama = curr->nama;
+            int harga = curr->harga;
+            int qty = curr->qty;
+            WDF *temp = curr->prev;
+            while (temp != NULL && (temp->harga * temp->qty) > (harga * qty))
+            {
+                temp->next->nama = temp->nama;
+                temp->next->harga = temp->harga;
+                temp->next->qty = temp->qty;
+                temp = temp->prev;
+            }
+            if (temp == NULL)
+            {
+                head->nama = nama;
+                head->harga = harga;
+                head->qty = qty;
+            }
+            else
+            {
+                temp->next->nama = nama;
+                temp->next->harga = harga;
+                temp->next->qty = qty;
+            }
+            curr = curr->next;
+        }
+    }
+
+/*-------------------------------- Tampilan untuk struk --------------------------------*/
+
+    // fungsi untuk kode struk random angka 4 digit
     int kodestruk(int min, int max)
     {
         srand(time(NULL));
@@ -44,7 +224,7 @@ struct CoffeeShop
         cin >> no_meja;
     }
 
-    // waktu sekarang
+    // fungsi untuk waktu saat ini
     void waktu()
     {
         // Mendapatkan waktu saat ini
@@ -101,181 +281,10 @@ struct CoffeeShop
         cout << "=====================================" << endl << endl << endl;
     }
 
-    void addMenu(string nama, int harga, int qty)
-    {
-        WDF *baru = new WDF;
-        baru->nama = nama;
-        baru->harga = harga;
-        baru->qty = qty;
-        baru->next = NULL;
-        baru->prev = NULL;
-        if (head == NULL)
-        {
-            head = baru;
-            tail = baru;
-        }
-        else
-        {
-            tail->next = baru;
-            baru->prev = tail;
-            tail = baru;
-        }
-    }
+/*--------------------------------------------------------------------------------------*/
 
-    void deleteOrder(string nama)
-    {
-        WDF *curr = head;
-        while (curr != NULL)
-        {
-            if (curr->nama == nama)
-            {
-                if (curr == head)
-                {
-                    head = curr->next;
-                    head->prev = NULL;
-                    delete curr;
-                    break;
-                }
-                else if (curr == tail)
-                {
-                    tail = curr->prev;
-                    tail->next = NULL;
-                    delete curr;
-                    break;
-                }
-                else
-                {
-                    curr->prev->next = curr->next;
-                    curr->next->prev = curr->prev;
-                    delete curr;
-                    break;
-                }
-            }
-            curr = curr->next;
-        }
-    }
-
-    //fungsi untuk melihat daftar menu
-    void displayOrder()
-    {
-        cout << endl << endl;
-        cout << "---------- Daftar Pesanan  ----------" << endl;
-        cout << "=====================================" << endl;
-        cout << "Menu" "\t\t" << "Qty" << "\t" << "Harga" << "\t" << "Total" << endl;
-        cout<< "-------------------------------------" << endl;
-        //tampilkan menu yang dipesan
-        WDF *curr = head;
-        while (curr != NULL)
-        {
-            cout << curr->nama << "\t\t" << curr->qty << "\t" << curr->harga << "\t" << curr->qty * curr->harga << endl;
-            curr = curr->next;
-        }
-        cout << "-------------------------------------" << endl << endl << endl;
-    }
-
-    void displayMenu()
-    {
-        cout << endl << endl;
-        cout << "=====================================" << endl;
-        cout << "           WDF Coffee Haven" << endl;
-        cout << "           Gang Jeruk No. 5" << endl;
-        cout << "            Telp. 1500-212" << endl;
-        cout << "=====================================" << endl;
-        cout << "Menu" "\t\t\t\t" << "Harga" << endl;
-        cout << "=====================================" << endl;
-        cout << "~~~~~~~~~~~~~ Kopi :) ~~~~~~~~~~~~~~~" << endl;
-        cout << "1. Espresso" << "\t\t\t" << "15000" << endl;
-        cout << "2. Cappucino" << "\t\t\t" << "20000" << endl;
-        cout << "3. Latte" << "\t\t\t" << "20000" << endl;
-        cout << "4. Mocha" << "\t\t\t" << "25000" << endl;
-        cout << "5. Americano" << "\t\t\t" << "15000" << endl;
-        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
-        cout << "~~~~~~~~~~~~~ Snack :) ~~~~~~~~~~~~~~" << endl;
-        cout << "1. Donut" << "\t\t\t" << "10000" << endl;
-        cout << "2. Brownies" << "\t\t\t" << "15000" << endl;
-        cout << "3. Cookies" << "\t\t\t" << "10000" << endl;
-        cout << "4. Pie" << "\t\t\t\t" << "20000" << endl;
-        cout << "5. Cake" << "\t\t\t\t" << "25000" << endl;
-        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-        cout << "=====================================" << endl << endl << endl;
-    }
-
-    //edit pesanan berdasarkan nama pesanan
-    void editOrder(string nama, string namaBaru, int hargaBaru, int qtyBaru)
-    {
-        WDF* curr = head;
-        while (curr != NULL)
-        {
-            if (curr->nama == nama)
-            {
-                curr->nama = namaBaru;
-                curr->harga = hargaBaru;
-                curr->qty = qtyBaru;
-                return; // Menggunakan return untuk keluar dari fungsi setelah mengedit pesanan
-            }
-        curr = curr->next;
-        }
-        cout << "Pesanan tidak ditemukan." << endl; // Menambahkan pesan jika pesanan tidak ditemukan
-    }
-    
-    //mencari order berdasarkan nama
-    void searchOrder(string nama)
-    {
-        WDF *curr = head;
-        while (curr != NULL)
-        {//ketika menu tidak ditemukan terdapat pesan
-            if (curr->nama == nama)
-            {
-                cout << "--------- Pesanan Ditemukan ---------" << endl;
-                cout << "Nama Pesanan" "\t\t\t" << curr->nama << endl;
-                cout << "Harga" "\t\t\t\t" << curr->harga << endl;
-                cout << "Qty" "\t\t\t\t" << curr->qty << endl;
-                cout << "Total" "\t\t\t\t" << curr->harga * curr->qty << endl;
-                cout << "-------------------------------------" << endl;
-                break;
-            }
-            curr = curr->next;
-        }
-        if (curr == NULL)
-        {
-            cout << "Pesanan tidak ditemukan." << endl;
-        }
-    }
-
-    //Mengurutkan pesanan berdasarkan total dari yang termurah menggunakan insertion sort
-    void sortOrder()
-    {
-        WDF *curr = head;
-        while (curr != NULL)
-        {
-            string nama = curr->nama;
-            int harga = curr->harga;
-            int qty = curr->qty;
-            WDF *temp = curr->prev;
-            while (temp != NULL && (temp->harga * temp->qty) > (harga * qty))
-            {
-                temp->next->nama = temp->nama;
-                temp->next->harga = temp->harga;
-                temp->next->qty = temp->qty;
-                temp = temp->prev;
-            }
-            if (temp == NULL)
-            {
-                head->nama = nama;
-                head->harga = harga;
-                head->qty = qty;
-            }
-            else
-            {
-                temp->next->nama = nama;
-                temp->next->harga = harga;
-                temp->next->qty = qty;
-            }
-            curr = curr->next;
-        }
-    }
-
-    //melihat pesanan termurah, termahal, terbanyak, tersedikit
+    //fungsi untuk melihat statistik pesanan berdasarkan 
+    //harga total, total pesanan, harga pesanan termurah, harga pesanan termahal, jumlah pesanan terbanyak, dan jumlah pesanan tersedikit
     void statistikOrder()
     {
         WDF *curr = head;
@@ -315,6 +324,7 @@ struct CoffeeShop
             }
             curr = curr->next;
         }
+        cout << endl << endl;
         cout << "=====================================" << endl;
         cout << "           WDF Coffee Haven" << endl;
         cout << "           Gang Jeruk No. 5" << endl;
