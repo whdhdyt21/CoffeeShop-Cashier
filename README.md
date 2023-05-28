@@ -1,11 +1,7 @@
 # Tugas Proyek Akhir Struktur Data
 //Tugas Proyek UAS Struktur Data. Program ini digunakan untuk pemesanan dan pencetakan struk di coffeeshop
 
-=====================================
-           WDF Coffee Haven
-           Gang Jeruk No. 5
-            Telp. 1500-212
-=====================================
+//Tampilan Menu/Fitur
 1. Tampilkan daftar menu
 2. Tambah pesanan
 3. Tampilkan Pesanan
@@ -16,4 +12,3 @@
 8. Cetak Struk
 9. Statistik Pesanan
 10. Keluar Program
-=====================================
