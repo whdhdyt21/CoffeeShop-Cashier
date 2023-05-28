@@ -1,12 +1,19 @@
 # Tugas Proyek Akhir Struktur Data
-//Tugas Proyek UAS Struktur Data. Program ini digunakan untuk pemesanan dan pencetakan struk di coffeshop
+//Tugas Proyek UAS Struktur Data. Program ini digunakan untuk pemesanan dan pencetakan struk di coffeeshop
 
-# Double Linked list
-1. double linked list
-2. Menambah Data
-3. Menghapus Data
-4. Melihat Data
-5. Mengedit Pesanan
-6. Mencari Data
-7. Mengurutkan Data (Insertion Sort)
-8. Keluar dari Program
+=====================================
+           WDF Coffee Haven
+           Gang Jeruk No. 5
+            Telp. 1500-212
+=====================================
+1. Tampilkan daftar menu
+2. Tambah pesanan
+3. Tampilkan Pesanan
+4. Edit Pesanan
+5. Hapus Pesanan
+6. Cari Pesanan
+7. Urutkan Pesanan
+8. Cetak Struk
+9. Statistik Pesanan
+10. Keluar Program
+=====================================
