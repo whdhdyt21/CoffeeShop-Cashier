@@ -1,5 +1,6 @@
 # Tugas Proyek Akhir Struktur Data
-//Tugas Proyek UAS Struktur Data. Program ini digunakan untuk pemesanan dan pencetakan struk di coffeeshop
+//Tugas Proyek UAS Struktur Data.
+//Program ini digunakan untuk pemesanan dan pencetakan struk di coffeeshop
 
 //Tampilan Menu/Fitur
 1. Tampilkan daftar menu
