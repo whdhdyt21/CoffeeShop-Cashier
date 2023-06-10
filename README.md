@@ -1,6 +1,4 @@
-# Tugas Proyek Akhir Struktur Data
-//Tugas Proyek UAS Struktur Data.
-//Program ini digunakan untuk pemesanan dan pencetakan struk di coffeeshop
+# CoffeeShop Cashier
 
 //Program memiliki beberapa fitur utama, diantaranya yaitu :
 1. Tampilan menu sederhana yang memuat 10 pilihan menu.
