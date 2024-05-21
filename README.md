@@ -1,20 +1,14 @@
-# CoffeeShop Cashier (using C++)
+# Sorting Methods Using Bubble and Selection
 
 ## Overview
-CoffeeShop Cashier is a simple yet comprehensive cashier system designed for coffee shops. This C++ program offers a range of features to manage orders, display menu items, and handle transactions efficiently. 
+Sorting Methods Using Bubble and Selection is a simple C++ program that demonstrates the implementation of two fundamental sorting algorithms: Bubble Sort and Selection Sort. This program allows users to input an array of integers, choose a sorting method, and observe the sorting process step-by-step.
 
 ## Features
-1. **Simple Menu Display**: The program presents a straightforward menu with 10 options.
-2. **View Menu Items**: Display a list of coffee and snack items along with their prices.
-3. **Add Orders**: Users can add orders repeatedly or return to the main menu.
-4. **View Orders**: Display added orders including menu items, quantities, prices, and the total cost.
-5. **Edit Orders**: Modify order details such as menu item name, price, and quantity.
-6. **Delete Orders**: Remove orders by menu item name.
-7. **Search Orders**: Search for orders by menu item name.
-8. **Sort Orders**: Sort orders by total price in ascending order using the insertion sort method.
-9. **Print Receipt**: Print a payment receipt by entering the table number and amount paid.
-10. **Display Order Statistics**: Show order statistics including total sales, overall order quantity, cheapest order, most expensive order, most ordered item, and least ordered item.
-11. **Exit Program**: Exit the cashier system.
+1. **Input Array**: Users can input an array of integers to be sorted.
+2. **Bubble Sort**: Implements the Bubble Sort algorithm, displaying each step of the sorting process.
+3. **Selection Sort**: Implements the Selection Sort algorithm, displaying each step of the sorting process.
+4. **Menu Interface**: Users can select which sorting method to use or exit the program.
+5. **Display Sorted Array**: The program displays the array before and after sorting.
 
 ## Getting Started
 
@@ -25,27 +19,27 @@ CoffeeShop Cashier is a simple yet comprehensive cashier system designed for cof
 ### Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/whdhdyt21/CoffeeShop-Cashier.git
+    git clone https://github.com/whdhdyt21/Sorting-Methods-Using-Bubble-and-Selection.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd CoffeeShop-Cashier
+    cd Sorting-Methods-Using-Bubble-and-Selection
     ```
 
 ### Compilation
 Compile the program using a C++ compiler:
 ```bash
-g++ main.cpp -o coffeeshop-cashier
+g++ main.cpp -o sorting-methods
 ```
 
 ### Running the Program
 Run the compiled program:
 ```bash
-./coffeeshop-cashier
+./sorting-methods
 ```
 
 ## Usage
-Follow the on-screen instructions to navigate through the menu and use the features. The program is designed to be user-friendly with clear prompts for each action.
+Follow the on-screen instructions to input the array, choose the sorting method, and observe the sorting process. The program is designed to be user-friendly with clear prompts for each action.
 
 ## Contributing
 Contributions are welcome! Please fork this repository and submit a pull request for any enhancements or bug fixes.
