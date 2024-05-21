@@ -25,11 +25,11 @@ CoffeeShop Cashier is a simple yet comprehensive cashier system designed for cof
 ### Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/coffeeshop-cashier.git
+    git clone https://github.com/whdhdyt21/CoffeeShop-Cashier.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd coffeeshop-cashier
+    cd CoffeeShop-Cashier
     ```
 
 ### Compilation
@@ -55,9 +55,6 @@ Contributions are welcome! Please fork this repository and submit a pull request
 3. Commit your changes (`git commit -am 'Add new feature'`).
 4. Push to the branch (`git push origin feature/your-feature`).
 5. Create a new Pull Request.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 Thanks to everyone who has contributed to this project and helped improve it.
