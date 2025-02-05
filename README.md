@@ -1,5 +1,3 @@
-### **📜 README.md**
-```md
 # ☕ Coffee Shop Order Management (Double Linked List in C++)
 
 Aplikasi **Coffee Shop Order Management** adalah sistem pemesanan sederhana yang menggunakan **Double Linked List** dalam **C++** untuk menyimpan, mengedit, menghapus, mencari, dan mengurutkan pesanan kopi.
